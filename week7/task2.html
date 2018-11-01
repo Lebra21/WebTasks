@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <style>
+      #cards .card{
+        border:1px solid red;
+        display:flex;
+        width:300px;
+      }
+      #cards .card .title{
+        flex-grow: 1;
+      }
+      #cards .card .price{
+        font-weight: bold;
+        padding-right: 20px;
+      }
+      #loading{
+        display: none;
+      }
+      #cards{
+        width:300px;
+        height:200px;
+        border: 1px solid blue;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button>Load</button>
+    <div id="cards">
+      <img width="300px" height="200px" id="loading" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif"/>
+    </div>
+   <script type="text/javascript" defer>
+	  var options = [{"maker":"Toyota","model":"Camry 50","price":50000},{"maker":"Toyota","model":"Carina","price":40000},{"maker":"Volkswagen","model":"Tuareg","price":35000},{"maker":"Mercedes","model":"C100","price":45000}];
+		var load = document.getElementsByTagName('button')[0];
+		var cards = document.getElementById("cards");
+		var loading = document.getElementById("loading");
+		load.addEventListener("click",function(){
+	    loading.style.display = "block";
+	    cards.style.height = "300px";
+	    load.disabled = true;
+	    setTimeout(function(){
+	        loading.style.display = "none";
+	        for(let i =0;i<options.length;i++){
+	            cards.innerHTML += "<div class = 'card'><p class = 'title'>" +options[i]["maker"]+ " " + options[i]["model"] +"</p><span class = 'price'>" + options[i]["price"] + "</span></div>";
+	        	}
+	    	},1000);
+		});
+   </script>
+
+  </body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+	var FAMILY_FILE = JSON.stringify([
+		{"name":"Zhaslan","born":2000,"mother":"Lyiza","father":"Marat"},
+		{"name":"Marat","born":1981,"mother":"Magzia","father":"Magzom"},
+		{"name":"Luiza","born":1982,"mother":"Marina","father":"Marat"},
+		{"name":"Magzom","born":1954,"mother":"dontnow","father":"Naben"},
+		{"name":"Magzia","born":1955,"mother":"Raya","father":"Maksut"}]);
+	var family = JSON.parse(FAMILY_FILE);
+	console.log(family.length);
+	console.log(family[1].name);
+	console.log(family[2].name);
+	console.log(family[1].born);
+	console.log(family[2].born);
+	console.log(family[1].father);
+	for(i=0;i<family.length;i++){
+		if(1950>family[i].born && 1950-family[i].born < 26)
+			console.log(family[i].name);
+		else if(1950<family[i].born)
+			console.log(family[i].name);
+		else
+			console.log(family[i].name)
+	}
+	var y = family[i].born;
+	for(i=0;i<family.length;i++){
+		if(family[i].born < family[i+1].born)
+			return y;
+		else
+			return family[i+1].born;
+	}
+
+
+
+</script>
+</html>
+-->

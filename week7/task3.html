@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <style>
+      #cards .card{
+        border:1px solid red;
+        display:flex;
+        width:300px;
+      }
+      #cards .card .title{
+        flex-grow: 1;
+      }
+      #cards .card .price{
+        font-weight: bold;
+        padding-right: 20px;
+      }
+      #loading{
+        display: none;
+      }
+      #cards{
+        width:300px;
+        height:200px;
+        border: 1px solid blue;
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <button>Load</button>
+    <div>
+      <button id="sortByMaker">Sort by maker</button>
+      <button id="sortByPrice">Sort by price</button>
+      <button id = "reverse">Reverse</button>
+      <button id = "deleteAll">Delete by All</button>
+      <button id = "delete">Delete by last</button>
+    </div>
+    <div id="cards">
+      <img width="300px" height="200px" id="loading" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif"/>
+    </div>
+
+
+    <script defer>
+	/* Write your code here */
+     var options = 
+        [{"maker":"Toyota","model":"Camry 50","price":50000},
+        {"maker":"Toyota","model":"Carina","price":40000},
+        {"maker":"Volkswagen","model":"Tuareg","price":35000},
+        {"maker":"Mercedes","model":"C100","price":45000}];
+      var load = document.getElementsByTagName('button')[0];
+
+      var cards = document.getElementById("cards");
+      var loading = document.getElementById("loading");
+      var sortByMaker = document.getElementById("sortByMaker");
+      var sortByPrice = document.getElementById("sortByPrice");
+      var reverse = document.getElementById("reverse");
+      var deleteAll = document.getElementById("deleteAll");
+      var deleteLast = document.getElementById("delete");
+      load.addEventListener("click",function(){
+        loading.style.display = "block";
+        cards.style.height = "300px";
+        setTimeout(function(){
+            loading.style.display = "none";
+            for(let i =0;i<options.length;i++){
+                cards.innerHTML += "<div class = 'card'><p class = 'title'>" +options[i]["maker"]+ " " + options[i]["model"] +"</p><span class = 'price'>" + options[i]["price"] + "</span></div>";
+              }
+          },0);
+      });
+
+      sortByMaker.addEventListener("click",function(){
+        options.sort(function(a,b){
+          if(a.maker > b.maker)
+            return 1;
+          else if(a.maker < b.maker)
+            return -1;
+          else
+            return 0;
+          });
+          cards.innerHTML = "";
+          for(var i = 0; i<options.length;i++){
+            cards.innerHTML += "<div class = 'card'><p class = 'title'>" +options[i]["maker"]+ " " + options[i]["model"] +"</p><span class = 'price'>" + options[i]["price"] + "</span></div>";
+          }
+        
+        });
+
+        sortByPrice.addEventListener("click",function(){
+          options.sort(function(a,b){
+            if(a.price > b.price)
+              return 1;
+            else if(a.price < b.price)
+              return -1;
+            else
+              return 0;
+            });
+            cards.innerHTML = "";
+            for(var i = 0; i<options.length;i++){
+              cards.innerHTML += "<div class = 'card'><p class = 'title'>" +options[i]["maker"]+ " " + options[i]["model"] +"</p><span class = 'price'>" + options[i]["price"] + "</span></div>";
+            }
+          
+          });
+        reverse.addEventListener("click",function(){
+          options.reverse(function(x){
+            for(i=0;i<options.length;i++){
+              options[options.length - i - 1] = options[i];
+            }
+            return options;
+          });
+          cards.innerHTML = "";
+          for(var i = 0; i<options.length;i++){
+            cards.innerHTML += "<div class = 'card'><p class = 'title'>" +options[i]["maker"]+ " " + options[i]["model"] +"</p><span class = 'price'>" + options[i]["price"] + "</span></div>";
+          }
+        });
+        deleteAll.addEventListener("click",function(){
+          loading.style.display = "none";
+          cards.innerHTML = "";
+        });
+        deleteLast.addEventListener("click",function(){
+          options.pop(function(obj){
+            for(var key in obj){
+              var result = obj[key];
+              if(!delete obj[key]){throw new Error();}
+              return result;
+            }
+          });
+          cards.innerHTML = "";
+          for(var i = 0; i<options.length;i++){
+            cards.innerHTML += "<div class = 'card'><p class = 'title'>" +options[i]["maker"]+ " " + options[i]["model"] +"</p><span class = 'price'>" + options[i]["price"] + "</span></div>";
+          }
+        });
+
+    </script>
+  </body>
+
+</html>

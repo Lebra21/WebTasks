@@ -1,0 +1,64 @@
+<html>
+<head>
+<style>
+#news{
+	border:1px solid red;
+	width:400px;
+	height:300px;
+}
+</style>
+</head>
+<body>
+
+<div id="news"></div>
+<button id="sport">Load Sport news</button>
+<button id="politics">Load Politics news</button>
+<button id="bussiness">Load Bussiness news</button>
+
+
+<script>
+/* Write your code here */
+	function Fn(){
+	var n = document.getElementById("news");
+	var news = {
+		"sport":
+				{"header":"Dow Jones index has fallen","text":"Dow Jones index has fallen, because of prices for petrol"}
+			}
+
+	console.log('asd');
+	var stra = this.id.toString();
+	n.innerHTML  = "<h1>" + news[stra]["header"] + "</h1><br><p>" + news[stra]["text"] + "</p>";
+}
+  var sport = document.getElementById("sport");
+  sport.addEventListener("click",Fn);
+  function Fn1(){
+  var n = document.getElementById("news");
+	var news = {
+		"politics":
+				{"header":"Trump visited UK","text":"Trump started his foreign tour by visiting UK"}
+			}
+
+	console.log('asd');
+	var stra = this.id.toString();
+	n.innerHTML  = "<h1>" + news[stra]["header"] + "</h1><br><p>" + news[stra]["text"] + "</p>";
+}
+  var sport = document.getElementById("politics");
+  sport.addEventListener("click",Fn1);
+
+function Fn2(){
+  var n = document.getElementById("news");
+	var news = {
+		"bussiness":
+				{"header":"Messi scored 5 goals","text":"Messi scored 5 goals in last match and became top-scorer of the league"}
+			}
+
+	console.log('asd');
+	var stra = this.id.toString();
+	n.innerHTML  = "<h1>" + news[stra]["header"] + "</h1><br><p>" + news[stra]["text"] + "</p>";
+}
+  var sport = document.getElementById("bussiness");
+  sport.addEventListener("click",Fn2);
+
+</script>
+</body>
+</html>
