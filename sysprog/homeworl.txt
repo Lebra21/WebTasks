@@ -1,0 +1,1 @@
+cut -d' ' -f 4 log.txt | cut -d':' -f 1 | cut -d'[' -f 2 | sed 's=/=-=g' | sed 's/Oct/10/g' | sort | uniq -c | sort -n | tail | tac | sed 's/^ *//' | sed 's/^\(.*\) \(.*\)$/\2 - \1/' | awk 'BEGIN {n=0} {sum+=$1;a[n]=$1;b[n]=$2;n++} END {for(i=0;i<n;i++) printf("%d. %s - %d - %0.1f%s\n",i+1,b[i],a[i],a[i]*100/sum,"%")}'
